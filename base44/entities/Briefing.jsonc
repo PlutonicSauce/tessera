@@ -1,0 +1,43 @@
+{
+  "name": "Briefing",
+  "type": "object",
+  "properties": {
+    "dossier_id": {
+      "type": "string"
+    },
+    "audience": {
+      "type": "string",
+      "enum": [
+        "analyst",
+        "leadership"
+      ],
+      "default": "leadership"
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "finding_count": {
+      "type": "number"
+    },
+    "source_count": {
+      "type": "number"
+    },
+    "engine": {
+      "type": "string"
+    },
+    "signed_off_by": {
+      "type": "string"
+    },
+    "signed_off_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "dossier_id",
+    "content"
+  ]
+}

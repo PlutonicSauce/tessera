@@ -1,0 +1,81 @@
+{
+  "name": "Dossier",
+  "type": "object",
+  "properties": {
+    "title": {
+      "type": "string"
+    },
+    "policy_type": {
+      "type": "string",
+      "enum": [
+        "bill",
+        "proposed_rule",
+        "final_rule",
+        "notice",
+        "executive_order",
+        "state_legislation",
+        "other"
+      ],
+      "default": "proposed_rule"
+    },
+    "agency": {
+      "type": "string"
+    },
+    "docket_id": {
+      "type": "string"
+    },
+    "fr_document_number": {
+      "type": "string"
+    },
+    "source_url": {
+      "type": "string"
+    },
+    "publication_date": {
+      "type": "string",
+      "format": "date"
+    },
+    "comment_deadline": {
+      "type": "string",
+      "format": "date"
+    },
+    "abstract": {
+      "type": "string"
+    },
+    "policy_text": {
+      "type": "string",
+      "description": "Display excerpt (max ~16k chars)"
+    },
+    "policy_text_uri": {
+      "type": "string",
+      "description": "Private file URI holding the full policy text"
+    },
+    "full_text_length": {
+      "type": "number"
+    },
+    "prior_version_text": {
+      "type": "string"
+    },
+    "revision_analysis": {
+      "type": "object"
+    },
+    "analysis_meta": {
+      "type": "object"
+    },
+    "status": {
+      "type": "string",
+      "enum": [
+        "gathering",
+        "in_review",
+        "briefed"
+      ],
+      "default": "gathering"
+    },
+    "last_analyzed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "title"
+  ]
+}

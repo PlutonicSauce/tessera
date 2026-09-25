@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;1,6..72,400&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 42 30% 96%;
+    --foreground: 225 15% 10%;
+    --card: 40 33% 99%;
+    --card-foreground: 225 15% 10%;
+    --popover: 40 33% 99%;
+    --popover-foreground: 225 15% 10%;
+    --primary: 225 15% 10%;
+    --primary-foreground: 42 30% 96%;
+    --secondary: 40 20% 92%;
+    --secondary-foreground: 225 15% 10%;
+    --muted: 40 18% 92%;
+    --muted-foreground: 30 5% 40%;
+    --accent: 40 20% 90%;
+    --accent-foreground: 225 15% 10%;
+    --destructive: 0 72% 42%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 38 16% 86%;
+    --input: 38 16% 84%;
+    --ring: 225 15% 10%;
+    --chart-1: 229 62% 45%;
+    --chart-2: 175 77% 26%;
+    --chart-3: 32 95% 36%;
+    --chart-4: 263 70% 50%;
+    --chart-5: 30 5% 40%;
+    --radius: 0.75rem;
+    --font-heading: 'Instrument Serif', Georgia, serif;
+    --font-display: 'Instrument Serif', Georgia, serif;
+    --font-serif: 'Newsreader', Georgia, serif;
+    --font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-feature-settings: "ss01", "cv11";
+  }
+
+  ::selection {
+    background: rgba(43, 69, 184, 0.16);
+  }
+}
+
+@layer components {
+  .eyebrow {
+    @apply text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground;
+  }
+  .briefing-prose h2 {
+    @apply font-display text-[28px] leading-tight mt-10 mb-3 text-foreground;
+  }
+  .briefing-prose p,
+  .briefing-prose li {
+    @apply font-serif text-[17px] leading-8 text-foreground/90;
+  }
+  .briefing-prose ul {
+    @apply list-disc pl-6 space-y-1.5 my-3;
+  }
+  .briefing-prose ol {
+    @apply list-decimal pl-6 space-y-1.5 my-3;
+  }
+  .briefing-prose strong {
+    @apply font-semibold text-foreground;
+  }
+}

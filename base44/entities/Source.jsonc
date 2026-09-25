@@ -1,0 +1,89 @@
+{
+  "name": "Source",
+  "type": "object",
+  "properties": {
+    "dossier_id": {
+      "type": "string"
+    },
+    "ref": {
+      "type": "string"
+    },
+    "evidence_class": {
+      "type": "string",
+      "enum": [
+        "policy_text",
+        "reporting",
+        "public_opinion"
+      ]
+    },
+    "channel": {
+      "type": "string",
+      "enum": [
+        "policy_document",
+        "news",
+        "public_comment",
+        "survey",
+        "correspondence",
+        "call_transcript",
+        "social",
+        "hearing",
+        "other"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "content": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "outlet": {
+      "type": "string"
+    },
+    "author_type": {
+      "type": "string",
+      "enum": [
+        "individual",
+        "organization",
+        "business",
+        "government",
+        "academic",
+        "anonymous",
+        "unknown"
+      ],
+      "default": "unknown"
+    },
+    "published_date": {
+      "type": "string"
+    },
+    "origin": {
+      "type": "string",
+      "enum": [
+        "manual",
+        "federal_register",
+        "regulations_gov",
+        "gdelt"
+      ],
+      "default": "manual"
+    },
+    "external_id": {
+      "type": "string"
+    },
+    "pii_redactions": {
+      "type": "number",
+      "default": 0
+    },
+    "is_headline_only": {
+      "type": "boolean",
+      "default": false
+    }
+  },
+  "required": [
+    "dossier_id",
+    "evidence_class",
+    "channel",
+    "content"
+  ]
+}

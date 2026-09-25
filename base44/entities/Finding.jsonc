@@ -1,0 +1,112 @@
+{
+  "name": "Finding",
+  "type": "object",
+  "properties": {
+    "dossier_id": {
+      "type": "string"
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "provision",
+        "affected_program",
+        "stakeholder",
+        "concern",
+        "support_reason",
+        "emerging_issue",
+        "misunderstanding",
+        "minority_view",
+        "conflict",
+        "open_question"
+      ]
+    },
+    "title": {
+      "type": "string"
+    },
+    "detail": {
+      "type": "string"
+    },
+    "stance": {
+      "type": "string",
+      "enum": [
+        "support",
+        "oppose",
+        "question",
+        "misunderstand",
+        "mixed",
+        "neutral"
+      ],
+      "default": "neutral"
+    },
+    "stakeholder_group": {
+      "type": "string"
+    },
+    "prevalence": {
+      "type": "string",
+      "enum": [
+        "widespread",
+        "recurring",
+        "isolated",
+        "n/a"
+      ],
+      "default": "n/a"
+    },
+    "confidence": {
+      "type": "string",
+      "enum": [
+        "high",
+        "medium",
+        "low"
+      ],
+      "default": "medium"
+    },
+    "uncertainty": {
+      "type": "string"
+    },
+    "citations": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "ref": {
+            "type": "string"
+          },
+          "source_id": {
+            "type": "string"
+          },
+          "quote": {
+            "type": "string"
+          },
+          "verified": {
+            "type": "boolean"
+          }
+        }
+      }
+    },
+    "review_status": {
+      "type": "string",
+      "enum": [
+        "pending",
+        "approved",
+        "edited",
+        "rejected"
+      ],
+      "default": "pending"
+    },
+    "analyst_note": {
+      "type": "string"
+    },
+    "reviewed_by": {
+      "type": "string"
+    },
+    "reviewed_at": {
+      "type": "string",
+      "format": "date-time"
+    }
+  },
+  "required": [
+    "dossier_id",
+    "category",
+    "title"
+  ]
+}
