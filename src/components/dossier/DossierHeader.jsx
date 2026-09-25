@@ -32,7 +32,7 @@ export default function DossierHeader({ dossier: d }) {
         <Meta label="Published" value={d.publication_date} />
         <Meta label="Comments close" value={d.comment_deadline} />
         {d.source_url && (
-          <a href={d.source_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-sm text-[#2B45B8] hover:underline">
+          <a href={d.source_url} target="_blank" rel="noreferrer" className="inline-flex items-center gap-1.5 text-sm text-primary hover:underline hover:text-primary/80 transition-colors">
             Official source <ExternalLink className="h-3.5 w-3.5" />
           </a>
         )}

@@ -1,67 +1,43 @@
-# Base44 Project
+# Tessera - Policy and Public Sentiment Analyst
 
-Use this repository to run and edit the app locally, then publish changes back through Base44.
+Tessera is an AI-powered policy analysis and public sentiment tracking dashboard built for the Microsoft and CCI Hackathon. It empowers government analysts, policy makers, and civic organizations to quickly gauge public response to federal regulations.
 
-Any change pushed to the repo will also be reflected in the Base44 Builder.
+## Key Features
 
-## Prerequisites
+- **Federal Register Integration**: Search and import policies directly from the open government Federal Register API.
+- **AI Dossier Generation**: Automatically aggregates public comments and news reporting related to a specific policy.
+- **Public Sentiment Analysis**: Leverages **Microsoft Foundry** (via Azure OpenAI) to analyze sentiment and classify feedback into key findings (e.g., support, opposition, misunderstanding, or emerging issues).
+- **Executive Summaries**: Synthesizes thousands of pages of policy text and public comments into 3-5 sentence plain-language summaries.
+- **Beautiful UI**: Modern glassmorphism design with a dark mode tailored for presentations and high readability.
 
-1. Clone the repository using the project's Git URL.
-2. Navigate to the project directory.
-3. Install dependencies: `npm install`.
-4. Install the Base44 CLI: `npm install -g base44@latest`.
-5. Install [Deno](https://docs.deno.com/runtime/getting_started/installation/) â the local Base44 backend runs on it.
+## Technologies Used
 
-Run `base44 --help` (or see the [CLI reference](https://docs.base44.com/developers/references/cli/commands/introduction)) for the full command surface.
+- **Frontend**: React, Vite, Tailwind CSS, Radix UI.
+- **AI / Cloud Services**:
+  - **Microsoft Foundry**: Used to orchestrate LLM calls and configure model deployments.
+  - **Azure AI / Azure OpenAI**: Deployed `gpt-oss-120b` for heavy textual analysis and sentiment parsing.
+- **Government Open Data**:
+  - Federal Register API (`https://www.federalregister.gov/api/v1/`)
+  - Regulations.gov API (for docket and comment tracking)
 
-## Run Locally
+## Setup & Running Locally
 
-Three commands, from the project root:
+1. Clone this repository.
+2. Ensure you have Node.js and NPM installed.
+3. Install dependencies:
+   ```bash
+   npm install
+   ```
+4. Start the local development server:
+   ```bash
+   npm run dev
+   ```
+5. Open your browser to `http://localhost:5173`.
 
-```bash
-base44 login   # one-time per machine
-base44 link    # one-time per clone
-base44 dev     # local backend + frontend together
-```
+## Architecture & Security
 
-Open the frontend URL that `base44 dev` prints (typically `http://localhost:5173`).
+Tessera is designed to keep backend logic and sensitive API keys secure. All AI analysis and API fetching happens server-side. The frontend only communicates with secure backend endpoints, ensuring that Azure API keys and logic are never exposed to the client.
 
-Notes:
+## Hackathon Team
 
-- **Every fresh clone needs `base44 link`.** It writes `base44/.app.jsonc` (the app-id pointer), which is deliberately gitignored. Your app id is in the Builder URL (`app.base44.com/apps/<id>/...`); `base44 link --help` shows the non-interactive flags.
-- **`base44 dev` runs the frontend for you** (via `site.serveCommand` in this repo's `base44/config.jsonc`) â never run `npm run dev` yourself: alone it serves a UI with no backend behind it (`[base44] Proxy not enabled`, every `/api` call fails), and alongside `base44 dev` the second Vite silently takes the next port and you end up looking at the wrong one.
-- **The app must be published at least once for the UI to load under `base44 dev`.** The frontend boots by fetching app settings from the hosted app; before the first publish that fails and every page redirects to login. The local API works regardless.
-- Entities, functions, and auth run locally â entity data is **in-memory only**, wiped when `base44 dev` restarts. Everything else (Core integrations, OAuth login) is forwarded to your deployed app. Full breakdown: [Local development overview](https://docs.base44.com/developers/backend/overview/local-dev/local-development-overview).
-
-## Frontend Only, Hosted Backend
-
-To work on just the frontend against your app's live hosted backend:
-
-```bash
-base44 dev --remote
-```
-
-â ï¸ In this mode writes go to your app's **production data** â plain `base44 dev` keeps everything local.
-
-## Publish Your Changes
-
-After pushing your changes to git, open the Base44 dashboard and publish the app:
-
-```bash
-base44 dashboard open
-```
-
-This repo syncs to Base44 through git, so publish from the dashboard rather than `base44 deploy` â a CLI deploy ships your local tree directly, bypassing the sync, and the deployed state silently diverges from the repo.
-
-## Docs & Support
-
-GitHub integration: [https://docs.base44.com/developers/app-code/local-development/github](https://docs.base44.com/developers/app-code/local-development/github)
-
-Local development: [https://docs.base44.com/developers/backend/overview/local-dev/local-development-overview](https://docs.base44.com/developers/backend/overview/local-dev/local-development-overview)
-
-Support: [https://app.base44.com/support](https://app.base44.com/support)
-
-
----
-
-[![Restore to base44](https://img.shields.io/badge/Restore%20to-BASE44-orange?style=for-the-badge&logo=rocket)](https://app.base44.com/apps)
+Built for the Microsoft and CCI Hackathon.

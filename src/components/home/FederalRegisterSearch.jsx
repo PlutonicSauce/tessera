@@ -43,6 +43,17 @@ export default function FederalRegisterSearch({ onCreated }) {
 
   return (
     <div>
+      <div className="mb-4 flex items-center justify-between">
+        <span className="text-xs font-medium uppercase tracking-wider text-muted-foreground/70">Source Integration</span>
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
+          <span className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-0.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-green-500"></span> Federal Register API
+          </span>
+          <span className="flex items-center gap-1 rounded-full border border-white/10 bg-white/5 px-2 py-0.5">
+            <span className="h-1.5 w-1.5 rounded-full bg-green-500"></span> Regulations.gov API
+          </span>
+        </div>
+      </div>
       <form onSubmit={(e) => { e.preventDefault(); search(); }} className="flex gap-2">
         <div className="relative flex-1">
           <Search className="absolute left-3.5 top-1/2 h-4 w-4 -translate-y-1/2 text-muted-foreground" />

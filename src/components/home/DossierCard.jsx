@@ -8,21 +8,26 @@ export default function DossierCard({ dossier: d }) {
   return (
     <Link
       to={`/dossier/${d.id}`}
-      className="group flex h-full flex-col rounded-2xl border border-border bg-card p-6 transition duration-300 hover:-translate-y-0.5 hover:shadow-[0_24px_48px_-28px_rgba(20,22,29,0.4)]"
+      className="group relative flex h-full flex-col rounded-3xl border border-white/5 bg-card/40 backdrop-blur-sm p-7 transition-all duration-500 hover:-translate-y-1 hover:shadow-[0_20px_40px_-20px_rgba(0,0,0,0.5)] overflow-hidden"
     >
-      <div className="flex items-center justify-between">
-        <span className="eyebrow">{TYPE_LABEL[d.policy_type] || "Policy"}</span>
+      <div className="absolute inset-0 bg-gradient-to-b from-white/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+      <div className="absolute -inset-px rounded-3xl bg-gradient-to-br from-primary/30 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100 pointer-events-none" />
+      
+      <div className="relative z-10 flex items-center justify-between">
+        <span className="eyebrow text-primary/80">{TYPE_LABEL[d.policy_type] || "Policy"}</span>
         <StatusPill status={d.status} />
       </div>
-      <h3 className="mt-4 line-clamp-3 font-display text-[26px] leading-[1.1]">{d.title}</h3>
-      <p className="mt-2 line-clamp-1 text-sm text-muted-foreground">{d.agency || "—"}</p>
-      <div className="mt-auto flex items-end justify-between pt-8">
-        <div className="flex gap-5 font-mono text-[11px] text-muted-foreground">
-          {d.docket_id && <span>{d.docket_id}</span>}
-          {meta.source_count != null && <span>{meta.source_count} sources</span>}
-          {meta.finding_count != null && <span>{meta.finding_count} findings</span>}
+      <h3 className="relative z-10 mt-5 line-clamp-3 font-display text-[28px] leading-[1.1] group-hover:text-primary transition-colors duration-300">{d.title}</h3>
+      <p className="relative z-10 mt-3 line-clamp-1 text-sm text-muted-foreground font-medium">{d.agency || "—"}</p>
+      <div className="relative z-10 mt-auto flex items-end justify-between pt-8">
+        <div className="flex gap-4 font-mono text-[11px] text-muted-foreground">
+          {d.docket_id && <span className="bg-white/5 px-2 py-1 rounded-md">{d.docket_id}</span>}
+          {meta.source_count != null && <span className="bg-white/5 px-2 py-1 rounded-md">{meta.source_count} sources</span>}
+          {meta.finding_count != null && <span className="bg-white/5 px-2 py-1 rounded-md">{meta.finding_count} findings</span>}
         </div>
-        <ArrowUpRight className="h-5 w-5 text-muted-foreground transition group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-foreground" />
+        <div className="rounded-full bg-white/5 p-2 transition-all duration-300 group-hover:bg-primary group-hover:text-primary-foreground">
+          <ArrowUpRight className="h-4 w-4 transition-transform group-hover:scale-110 group-hover:rotate-12" />
+        </div>
       </div>
     </Link>
   );
