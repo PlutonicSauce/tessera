@@ -1,5 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
-import { base44 } from '@/api/base44Client';
+import { tessera } from '@/api/tesseraClient';
 import { appParams } from '@/lib/app-params';
 
 const AuthContext = createContext();
@@ -38,16 +38,16 @@ export const AuthProvider = ({ children }) => {
     
     if (shouldRedirect) {
       // Use the SDK's logout method which handles token cleanup and redirect
-      base44.auth.logout(window.location.href);
+      tessera.auth.logout(window.location.href);
     } else {
       // Just remove the token without redirect
-      base44.auth.logout();
+      tessera.auth.logout();
     }
   };
 
   const navigateToLogin = () => {
     // Use the SDK's redirectToLogin method
-    base44.auth.redirectToLogin(window.location.href);
+    tessera.auth.redirectToLogin(window.location.href);
   };
 
   return (

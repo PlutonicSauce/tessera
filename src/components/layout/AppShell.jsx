@@ -1,6 +1,6 @@
 import { Link, Outlet } from "react-router-dom";
 import { LogOut } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { tessera } from "@/api/tesseraClient";
 import BrandMark from "@/components/shared/BrandMark";
 
 export default function AppShell() {
@@ -16,7 +16,7 @@ export default function AppShell() {
             <span className="ml-1 hidden border-l border-border/50 pl-3 eyebrow sm:inline">Policy &amp; Public Sentiment</span>
           </Link>
           <button
-            onClick={() => base44.auth.logout()}
+            onClick={() => tessera.auth.logout()}
             className="flex items-center gap-2 rounded-full px-3 py-1.5 text-sm text-muted-foreground transition-all duration-300 hover:bg-white/10 hover:text-foreground hover:shadow-[0_0_15px_rgba(255,255,255,0.1)]"
           >
             <LogOut className="h-4 w-4" />

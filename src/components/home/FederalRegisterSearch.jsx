@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Search, Loader2, ArrowRight } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { tessera } from "@/api/tesseraClient";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
@@ -20,7 +20,7 @@ export default function FederalRegisterSearch({ onCreated }) {
     setQuery(q);
     setLoading(true);
     try {
-      const r = await base44.functions.invoke("searchFederalRegister", { query: q, type: type === "any" ? "" : type });
+      const r = await tessera.functions.invoke("searchFederalRegister", { query: q, type: type === "any" ? "" : type });
       setResults(r.data.results);
     } catch (e) {
       toast({ title: "Search failed", description: e.response?.data?.error || e.message, variant: "destructive" });
@@ -32,8 +32,8 @@ export default function FederalRegisterSearch({ onCreated }) {
   const importDoc = async (doc) => {
     setImporting(doc.document_number);
     try {
-      const r = await base44.functions.invoke("importFederalRegister", { document_number: doc.document_number });
-      const d = await base44.entities.Dossier.create({ ...r.data.dossier, status: "gathering" });
+      const r = await tessera.functions.invoke("importFederalRegister", { document_number: doc.document_number });
+      const d = await tessera.entities.Dossier.create({ ...r.data.dossier, status: "gathering" });
       onCreated(d);
     } catch (e) {
       toast({ title: "Import failed", description: e.response?.data?.error || e.message, variant: "destructive" });

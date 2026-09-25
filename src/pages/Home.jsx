@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { base44 } from "@/api/base44Client";
+import { tessera } from "@/api/tesseraClient";
 import HomeHero from "@/components/home/HomeHero";
 import DossierCard from "@/components/home/DossierCard";
 import NewDossierDialog from "@/components/home/NewDossierDialog";
@@ -12,7 +12,7 @@ export default function Home() {
   const navigate = useNavigate();
   const { data: dossiers = [], isLoading } = useQuery({
     queryKey: ["dossiers"],
-    queryFn: () => base44.entities.Dossier.list("-updated_date", 100),
+    queryFn: () => tessera.entities.Dossier.list("-updated_date", 100),
   });
 
   return (

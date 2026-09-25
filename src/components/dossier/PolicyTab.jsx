@@ -1,5 +1,5 @@
 import { FileText } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { tessera } from "@/api/tesseraClient";
 import { Button } from "@/components/ui/button";
 import AIBlock from "@/components/shared/AIBlock";
 import ClassBadge from "@/components/shared/ClassBadge";
@@ -8,7 +8,7 @@ import GuardrailsCard from "@/components/dossier/GuardrailsCard";
 export default function PolicyTab({ dossier: d }) {
   const summary = d.analysis_meta?.policy_summary;
   const openFull = async () => {
-    const { signed_url } = await base44.integrations.Core.CreateFileSignedUrl({ file_uri: d.policy_text_uri, expires_in: 600 });
+    const { signed_url } = await tessera.integrations.Core.CreateFileSignedUrl({ file_uri: d.policy_text_uri, expires_in: 600 });
     window.open(signed_url, "_blank");
   };
 

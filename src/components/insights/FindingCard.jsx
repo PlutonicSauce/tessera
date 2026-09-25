@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Check, X, Pencil, Undo2, HelpCircle, Users } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { tessera } from "@/api/tesseraClient";
 import { CATEGORY_META, STANCE_META } from "@/lib/evidence";
 import CitationChip from "@/components/insights/CitationChip";
 import ConfidenceMeter from "@/components/insights/ConfidenceMeter";
@@ -19,8 +19,8 @@ export default function FindingCard({ finding: f, byRef, onChange }) {
   const stance = STANCE_META[f.stance];
 
   const review = async (status, extra = {}) => {
-    const me = await base44.auth.me();
-    await base44.entities.Finding.update(f.id, { review_status: status, reviewed_by: me.full_name || me.email, reviewed_at: new Date().toISOString(), ...extra });
+    const me = await tessera.auth.me();
+    await tessera.entities.Finding.update(f.id, { review_status: status, reviewed_by: me.full_name || me.email, reviewed_at: new Date().toISOString(), ...extra });
     onChange();
   };
 

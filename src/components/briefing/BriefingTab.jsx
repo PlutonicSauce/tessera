@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Loader2, FileSignature } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { tessera } from "@/api/tesseraClient";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import BriefingDocument from "@/components/briefing/BriefingDocument";
@@ -15,7 +15,7 @@ export default function BriefingTab({ dossier, sources, findings, briefings, ref
   const generate = async () => {
     setRunning(true);
     try {
-      const { data } = await base44.functions.invoke("generateBriefing", { dossier_id: dossier.id, audience });
+      const { data } = await tessera.functions.invoke("generateBriefing", { dossier_id: dossier.id, audience });
       setSelectedId(data.briefing.id);
       refresh("briefings", "dossier");
     } catch (e) {

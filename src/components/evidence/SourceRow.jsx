@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ExternalLink, Trash2, EyeOff } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { tessera } from "@/api/tesseraClient";
 import { CHANNEL_LABEL, AUTHOR_LABEL } from "@/lib/evidence";
 import ClassBadge from "@/components/shared/ClassBadge";
 
@@ -9,7 +9,7 @@ export default function SourceRow({ source: s, onDeleted }) {
   const long = (s.content || "").length > 260;
 
   const remove = async () => {
-    await base44.entities.Source.delete(s.id);
+    await tessera.entities.Source.delete(s.id);
     onDeleted();
   };
 

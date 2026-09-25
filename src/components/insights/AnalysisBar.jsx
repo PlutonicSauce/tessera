@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Loader2, Sparkles, RefreshCw } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { tessera } from "@/api/tesseraClient";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import AIBlock from "@/components/shared/AIBlock";
@@ -31,7 +31,7 @@ export default function AnalysisBar({ dossier, sources, findings, refresh }) {
     setRunning(true);
     setStage(0);
     try {
-      await base44.functions.invoke("analyzeDossier", { dossier_id: dossier.id });
+      await tessera.functions.invoke("analyzeDossier", { dossier_id: dossier.id });
       refresh("findings", "dossier");
     } catch (e) {
       toast({ title: "Analysis failed", description: e.response?.data?.error || e.message, variant: "destructive" });

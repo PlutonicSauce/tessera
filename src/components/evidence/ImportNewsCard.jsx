@@ -3,7 +3,7 @@ import { Loader2, Newspaper } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
-import { base44 } from "@/api/base44Client";
+import { tessera } from "@/api/tesseraClient";
 
 const STOP = new Set(["the", "of", "and", "for", "to", "a", "in", "on", "program", "rule", "act", "establishing", "implementation", "provisions", "amendments", "regulations"]);
 const defaultQuery = (title) => title.split(/[^A-Za-z]+/).filter((w) => w.length > 2 && !STOP.has(w.toLowerCase())).slice(0, 4).join(" ");
@@ -15,7 +15,7 @@ export default function ImportNewsCard({ dossier, onDone }) {
   const run = async () => {
     setLoading(true);
     try {
-      const { data } = await base44.functions.invoke("fetchNews", { dossier_id: dossier.id, query: q });
+      const { data } = await tessera.functions.invoke("fetchNews", { dossier_id: dossier.id, query: q });
       toast({ title: data.created ? `Added ${data.created} news reports` : "No new coverage found", description: data.message || `Headline-level coverage via ${data.via}, last 3 months.` });
       onDone();
     } catch (e) {

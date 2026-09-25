@@ -1,6 +1,6 @@
 import ReactMarkdown from "react-markdown";
 import { Printer, Copy, BadgeCheck } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { tessera } from "@/api/tesseraClient";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
 import CitationChip from "@/components/insights/CitationChip";
@@ -13,8 +13,8 @@ export default function BriefingDocument({ briefing: b, dossier, sources, onChan
   const byRef = Object.fromEntries(sources.map((s) => [s.ref, s]));
 
   const signOff = async () => {
-    const me = await base44.auth.me();
-    await base44.entities.Briefing.update(b.id, { signed_off_by: me.full_name || me.email, signed_off_at: new Date().toISOString() });
+    const me = await tessera.auth.me();
+    await tessera.entities.Briefing.update(b.id, { signed_off_by: me.full_name || me.email, signed_off_at: new Date().toISOString() });
     onChange();
   };
   const copy = async () => {

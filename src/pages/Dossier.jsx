@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { base44 } from "@/api/base44Client";
+import { tessera } from "@/api/tesseraClient";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import DossierHeader from "@/components/dossier/DossierHeader";
 import PipelineSteps from "@/components/dossier/PipelineSteps";
@@ -18,10 +18,10 @@ export default function Dossier() {
   const qc = useQueryClient();
   const [tab, setTab] = useState("policy");
 
-  const dossierQ = useQuery({ queryKey: ["dossier", id], queryFn: () => base44.entities.Dossier.get(id) });
-  const sourcesQ = useQuery({ queryKey: ["sources", id], queryFn: () => base44.entities.Source.filter({ dossier_id: id }, "created_date", 500) });
-  const findingsQ = useQuery({ queryKey: ["findings", id], queryFn: () => base44.entities.Finding.filter({ dossier_id: id }, "created_date", 500) });
-  const briefingsQ = useQuery({ queryKey: ["briefings", id], queryFn: () => base44.entities.Briefing.filter({ dossier_id: id }, "-created_date", 50) });
+  const dossierQ = useQuery({ queryKey: ["dossier", id], queryFn: () => tessera.entities.Dossier.get(id) });
+  const sourcesQ = useQuery({ queryKey: ["sources", id], queryFn: () => tessera.entities.Source.filter({ dossier_id: id }, "created_date", 500) });
+  const findingsQ = useQuery({ queryKey: ["findings", id], queryFn: () => tessera.entities.Finding.filter({ dossier_id: id }, "created_date", 500) });
+  const briefingsQ = useQuery({ queryKey: ["briefings", id], queryFn: () => tessera.entities.Briefing.filter({ dossier_id: id }, "-created_date", 50) });
 
   const refresh = (...keys) => keys.forEach((k) => qc.invalidateQueries({ queryKey: [k, id] }));
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Loader2 } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { tessera } from "@/api/tesseraClient";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
@@ -23,9 +23,9 @@ export default function ManualDossierForm({ onCreated }) {
       let policy_text_uri = "";
       if (f.text.length > EXCERPT) {
         const file = new File([f.text], "policy.txt", { type: "text/plain" });
-        policy_text_uri = (await base44.integrations.Core.UploadPrivateFile({ file })).file_uri;
+        policy_text_uri = (await tessera.integrations.Core.UploadPrivateFile({ file })).file_uri;
       }
-      const d = await base44.entities.Dossier.create({
+      const d = await tessera.entities.Dossier.create({
         title: f.title, policy_type: f.policy_type, agency: f.agency, docket_id: f.docket_id.trim(),
         policy_text: f.text.slice(0, EXCERPT), policy_text_uri, full_text_length: f.text.length, status: "gathering",
       });

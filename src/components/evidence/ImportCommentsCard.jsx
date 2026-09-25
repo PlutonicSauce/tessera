@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Loader2, MessagesSquare } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { tessera } from "@/api/tesseraClient";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
@@ -14,7 +14,7 @@ export default function ImportCommentsCard({ dossier, sources, onDone }) {
   const run = async () => {
     setLoading(true);
     try {
-      const { data } = await base44.functions.invoke("fetchPublicComments", { dossier_id: dossier.id, docket_id: docket, page });
+      const { data } = await tessera.functions.invoke("fetchPublicComments", { dossier_id: dossier.id, docket_id: docket, page });
       toast({
         title: data.created ? `Added ${data.created} public comments` : "No new comments added",
         description: data.message || `${data.attachment_only} attachment-only skipped · ${data.redactions} personal details redacted`,

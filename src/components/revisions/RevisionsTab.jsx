@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Loader2, GitCompare } from "lucide-react";
-import { base44 } from "@/api/base44Client";
+import { tessera } from "@/api/tesseraClient";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
 import { toast } from "@/components/ui/use-toast";
@@ -15,8 +15,8 @@ export default function RevisionsTab({ dossier: d, refresh }) {
   const compare = async () => {
     setRunning(true);
     try {
-      await base44.entities.Dossier.update(d.id, { prior_version_text: prior.slice(0, 16000) });
-      await base44.functions.invoke("compareRevisions", { dossier_id: d.id });
+      await tessera.entities.Dossier.update(d.id, { prior_version_text: prior.slice(0, 16000) });
+      await tessera.functions.invoke("compareRevisions", { dossier_id: d.id });
       refresh("dossier");
     } catch (e) {
       toast({ title: "Comparison failed", description: e.response?.data?.error || e.message, variant: "destructive" });
