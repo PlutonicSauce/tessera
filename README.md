@@ -1,6 +1,7 @@
 # Tessera - Policy and Public Sentiment Analyst
 
 🌟 **[LIVE DEMO: Click here to view the live presentation app!](https://PlutonicSauce.github.io/tessera/)** 🌟
+🎥 **[VIDEO DEMO: Watch the presentation on YouTube](https://youtu.be/UlAaq0LezcI)** 🎥
 
 Tessera is an AI-powered policy analysis and public sentiment tracking dashboard built for the Microsoft and CCI Hackathon. It empowers government analysts, policy makers, and civic organizations to quickly gauge public response to federal regulations.
 
